@@ -19,10 +19,21 @@ public class enemyspawn : MonoBehaviour
 
         for(int i = 0; i < enemiesToSpawn; i++)
         {
-            Vector3 spawnPos = player.position + Vector3.left * (Camera.main.orthographicSize * Camera.main.aspect + spawnOffset);
+            //raandom Y offset around the player
+            float randomY = player.position.y + Random.Range(-4f, 2f); //can be adjutsted
+
+            //calculate spawn position jut outside the left of the camera
+            float spawnX = player.position.x - (Camera.main.orthographicSize * Camera.main.aspect + spawnOffset);
+
+            Vector3 spawnPos = new Vector3(spawnX, randomY, 0f);
+
+            //spawn the enemy
             Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+
+            //ait before spawning the next one
             yield return new WaitForSeconds(spawnRate);
         }
+
     }
 
 }
