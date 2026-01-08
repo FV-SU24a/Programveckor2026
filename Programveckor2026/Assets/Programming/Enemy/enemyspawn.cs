@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class enemyspawn
+public class enemyspawn : MonoBehaviour
 {
-   
+    
 }
