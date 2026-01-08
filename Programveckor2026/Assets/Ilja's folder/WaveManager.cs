@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 
 public class WaveManager : MonoBehaviour
-{ //working on a script thats called enemyspawn that will be called in this script..so this script controls when enemies should spawn jst saying
+{ 
     public int currentWave = 0;
     public WeaponPoolManager weaponPool;
 
+    //reference to the enemy spawning script that keeps track and spawns enemies once called
+    public enemyspawn enemySpawner;
     public void CompleteWave()
     {
         currentWave++;
