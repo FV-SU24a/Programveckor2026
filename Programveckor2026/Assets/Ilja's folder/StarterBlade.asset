@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9433eb098663e424e9db3b32ad17e6fc, type: 3}
   m_Name: StarterBlade
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: 
-  weaponPrefab: {fileID: 0}
+  weaponName: WoodBlade
+  weaponPrefab: {fileID: 8534306393466169069, guid: baec965682fa06648b9ee2bf73625636, type: 3}
   unlockWave: 0
