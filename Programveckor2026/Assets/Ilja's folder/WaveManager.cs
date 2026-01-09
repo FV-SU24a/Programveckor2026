@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using System.Collections.Generic;
 public class WaveManager : MonoBehaviour
 {
+    public List<WaveEnemy> waveEnemies;
 
     public TMP_Text timerText; 
     public TMP_Text skipText; 
@@ -10,8 +12,6 @@ public class WaveManager : MonoBehaviour
     public int currentWave = 0;
     public WeaponPoolManager weaponPool;
 
-    //reference to the enemy spawning script that keeps track and spawns enemies once called
-    //also jst saying u need two empty game objects to run this, check my scene to see what i did if u need to 
     public enemyspawn enemySpawner;
 
     public float downtimeDuration = 180f;
@@ -70,14 +70,21 @@ public class WaveManager : MonoBehaviour
     {
         currentState = WaveState.ActiveWave;
         waveTimer = waveDuration;
-
         currentWave++;
-        Debug.Log($"wave {currentWave} started");
+
+        //pawn enemies based on waveEnemies list
+        foreach (WaveEnemy we in waveEnemies)
+        {
+            if (currentWave + 1 >= we.startWave) //+1 because currentWave starts at 0
+            {
+                enemySpawner.SpawnWave(currentWave, we);
+            }
+        }
+
+        Debug.Log($"Wave {currentWave} started");
 
         if (weaponPool != null)
             weaponPool.UpdateWeaponPool(currentWave);
-
-        enemySpawner.SpawnWave(currentWave);
     }
 
     void HandleActiveWave()
