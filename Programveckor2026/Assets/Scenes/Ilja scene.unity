@@ -1342,9 +1342,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36845be1d287e844192fd322009b0dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
+  timerText: {fileID: 0}
+  skipText: {fileID: 0}
   currentWave: 2
   weaponPool: {fileID: 1810445238}
   enemySpawner: {fileID: 0}
+  downtimeDuration: 180
+  waveDuration: 300
+  downtimeTimer: 0
+  waveTimer: 0
 --- !u!4 &1899851294
 Transform:
   m_ObjectHideFlags: 0
