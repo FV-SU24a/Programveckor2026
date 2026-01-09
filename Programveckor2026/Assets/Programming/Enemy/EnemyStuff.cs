@@ -54,7 +54,7 @@ public class EnemyStuff : MonoBehaviour
     }
     private void AttackPlayer() 
     {
-        //place holder
+        //place holder also need to make animator and stuff so i can call attack animation here
         Debug.Log($"{gameObject.name} attacks the player for {damage} damage");
     }
     private void TakeDamage(int amount)
