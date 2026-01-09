@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9433eb098663e424e9db3b32ad17e6fc, type: 3}
   m_Name: WeaponGun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: 
-  weaponPrefab: {fileID: 0}
-  unlockWave: 0
+  weaponName: Rare Gun
+  weaponPrefab: {fileID: 5829677810778504462, guid: 784e7d3f8147d79429d9b5a63e5f373d, type: 3}
+  unlockWave: 1
