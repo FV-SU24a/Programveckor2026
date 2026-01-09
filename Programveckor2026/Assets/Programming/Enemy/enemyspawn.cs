@@ -15,7 +15,7 @@ public class enemyspawn : MonoBehaviour
 
     private IEnumerator SpawnWaveCoroutine(int waveNumber)
     {
-        int enemiesToSpawn = Mathf.CeilToInt(3 * Mathf.Pow(1.5f, waveNumber)); //scalling..can be changed
+        int enemiesToSpawn = Mathf.CeilToInt(2 * Mathf.Pow(1.5f, waveNumber)); //scalling..can be changed
 
         for(int i = 0; i < enemiesToSpawn; i++)
         {
