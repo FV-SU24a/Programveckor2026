@@ -7,6 +7,7 @@ public class enemyspawn : MonoBehaviour
     public Transform player;
     public float spawnRate = 1f;
     public float spawnOffset = 1f; //distance outside left camera edge
+    public float spawnY = 0;
 
     public void SpawnWave(int waveNumber, WaveEnemy waveEnemy)
     {
@@ -20,13 +21,12 @@ public class enemyspawn : MonoBehaviour
 
         for(int i = 0; i < enemiesToSpawn; i++)
         {
-            //raandom Y offset around the player
-            float randomY = player.position.y + Random.Range(-4f, 2f); //can be adjutsted
+           
 
             //calculate spawn position jut outside the left of the camera
             float spawnX = player.position.x - (Camera.main.orthographicSize * Camera.main.aspect + spawnOffset);
 
-            Vector3 spawnPos = new Vector3(spawnX, randomY, 0f);
+            Vector3 spawnPos = new Vector3(spawnX, spawnY, 0f);
 
             //spawn the enemy
             Instantiate(waveEnemy.enemyPrefab, spawnPos, Quaternion.identity);

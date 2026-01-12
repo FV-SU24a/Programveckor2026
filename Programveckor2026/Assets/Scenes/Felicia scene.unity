@@ -152,6 +152,7 @@ MonoBehaviour:
   player: {fileID: 155770837}
   spawnRate: 1
   spawnOffset: 1
+  spawnY: 0
 --- !u!4 &25763078
 Transform:
   m_ObjectHideFlags: 0
@@ -251,7 +252,7 @@ Transform:
   m_GameObject: {fileID: 155770835}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.07, y: 3.42, z: 0}
+  m_LocalPosition: {x: 6.07, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -643,7 +644,7 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 959491518168199772, guid: 08cf1a4a21a414b4a949b72b42172499, type: 3}
     startWave: 0
     baseCount: 2
-    perWaveIncrease: 1
+    perWaveIncrease: 2
   - enemyPrefab: {fileID: 4515990791145139368, guid: ccfdf3ad8801bdc4f849c2564f0e4133, type: 3}
     startWave: 11
     baseCount: 2
