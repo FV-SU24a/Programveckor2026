@@ -2,15 +2,17 @@
 using UnityEngine.InputSystem;
 using TMPro;
 using System.Collections.Generic;
+
 public class WaveManager : MonoBehaviour
 {
-    private HashSet<GameObject> spawnedBosses = new HashSet<GameObject>();
+    public static WaveManager Instance; // singleton for easy access
 
+    private HashSet<GameObject> spawnedBosses = new HashSet<GameObject>();
 
     public List<WaveEnemy> waveEnemies;
 
-    public TMP_Text timerText; 
-    public TMP_Text skipText; 
+    public TMP_Text timerText;
+    public TMP_Text skipText;
 
     public int currentWave = 0;
     public WeaponPoolManager weaponPool;
@@ -23,10 +25,17 @@ public class WaveManager : MonoBehaviour
     public float downtimeTimer;
     public float waveTimer;
 
-    private enum WaveState { DownTime, ActiveWave} private WaveState currentState;
+    private enum WaveState { DownTime, ActiveWave }
+    private WaveState currentState;
 
     private Keyboard keyboard; //for detecting key presses
 
+    [HideInInspector] public bool isBossWaveThisRound = false; // flag for enemyspawn
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -38,10 +47,8 @@ public class WaveManager : MonoBehaviour
     {
         switch (currentState)
         {
-            case WaveState.DownTime:HandleDownTime();
-                break;
-            case WaveState.ActiveWave: HandleActiveWave();
-                break;
+            case WaveState.DownTime: HandleDownTime(); break;
+            case WaveState.ActiveWave: HandleActiveWave(); break;
         }
 
         UpdateUi();
@@ -51,19 +58,19 @@ public class WaveManager : MonoBehaviour
     {
         currentState = WaveState.DownTime;
         downtimeTimer = downtimeDuration;
-        Debug.Log($"Wave {currentWave} starting downtime({downtimeTimer} sec)");
+        Debug.Log($"Wave {currentWave} starting downtime ({downtimeTimer} sec)");
     }
 
     void HandleDownTime()
     {
         downtimeTimer -= Time.deltaTime;
 
-        if(keyboard != null && keyboard.cKey.wasPressedThisFrame)
+        if (keyboard != null && keyboard.cKey.wasPressedThisFrame)
         {
             downtimeTimer = 0f;
         }
 
-        if(downtimeTimer <= 0)
+        if (downtimeTimer <= 0)
         {
             StartWave();
         }
@@ -75,50 +82,50 @@ public class WaveManager : MonoBehaviour
         waveTimer = waveDuration;
         currentWave++;
 
-        bool bossSpawningThisWave = false;
+        WaveEnemy bossToSpawn = null;
+
+        // check if a boss is spawning this wave
         foreach (WaveEnemy we in waveEnemies)
         {
-            if (we.enemyPrefab.CompareTag("Boss") && currentWave + 1 >= we.startWave && !spawnedBosses.Contains(we.enemyPrefab))
+            if (we.enemyPrefab.CompareTag("Boss") && currentWave >= we.startWave && !spawnedBosses.Contains(we.enemyPrefab))
             {
-                bossSpawningThisWave = true;
+                bossToSpawn = we;
                 break;
             }
         }
 
-        //pawn enemies based on waveEnemies list
+        if (bossToSpawn != null)
+        {
+            isBossWaveThisRound = true;
+            ClearNormalEnemies();
+            enemySpawner.SpawnWave(currentWave, bossToSpawn);
+            spawnedBosses.Add(bossToSpawn.enemyPrefab);
+            Debug.Log($"Wave {currentWave} has a boss. Normal enemies skipped.");
+            return;
+        }
+        else
+        {
+            isBossWaveThisRound = false;
+        }
+
+        // spawn normal enemies only if no boss
         foreach (WaveEnemy we in waveEnemies)
         {
-            if (currentWave + 1 >= we.startWave) //+1 because currentWave starts at 0
+            if (!we.enemyPrefab.CompareTag("Boss") && currentWave >= we.startWave)
             {
-
-                if (we.enemyPrefab.CompareTag("Boss"))
-                {
-                    if (!spawnedBosses.Contains(we.enemyPrefab))
-                    {
-                        ClearNormalEnemies();
-                        enemySpawner.SpawnWave(currentWave, we);
-                        spawnedBosses.Add(we.enemyPrefab);
-                    }
-                }
-                else
-                {
-                    // Only spawn normal enemies if no boss is spawning this wave
-                    if (!bossSpawningThisWave)
-                        enemySpawner.SpawnWave(currentWave, we);
-                }
+                enemySpawner.SpawnWave(currentWave, we);
             }
         }
 
         Debug.Log($"Wave {currentWave} started");
 
-        if (weaponPool != null)
-            weaponPool.UpdateWeaponPool(currentWave);
+        weaponPool?.UpdateWeaponPool(currentWave);
     }
 
     void HandleActiveWave()
     {
         waveTimer -= Time.deltaTime;
-        if(waveTimer <= 0f)
+        if (waveTimer <= 0f)
         {
             Debug.Log($"Wave {currentWave} ended (timer expired). Starting downtime.");
             StartDownTime();
@@ -127,12 +134,12 @@ public class WaveManager : MonoBehaviour
 
     void UpdateUi()
     {
+        int minutes, seconds;
         switch (currentState)
         {
             case WaveState.DownTime:
-                //putting time as minutes:seconds
-                int minutes = Mathf.FloorToInt(downtimeTimer / 60f);
-                int seconds = Mathf.FloorToInt(downtimeTimer % 60f);
+                minutes = Mathf.FloorToInt(downtimeTimer / 60f);
+                seconds = Mathf.FloorToInt(downtimeTimer % 60f);
                 timerText.text = $"downtime: {minutes:00}:{seconds:00}";
                 skipText.gameObject.SetActive(true);
                 break;
@@ -148,10 +155,9 @@ public class WaveManager : MonoBehaviour
 
     private void ClearNormalEnemies()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach(GameObject enemy in enemies)
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            Destroy(enemy);
+            if (!enemy.CompareTag("Boss")) Destroy(enemy);
         }
     }
 }
