@@ -23,6 +23,9 @@ public class EnemyStuff : MonoBehaviour
 
     private void Update()
     {
+
+        if (CompareTag("Boss")) return; //if its a boss it ignores all normal behaviour
+
         if (!isAlive || target == null) return;
 
         //distance to player

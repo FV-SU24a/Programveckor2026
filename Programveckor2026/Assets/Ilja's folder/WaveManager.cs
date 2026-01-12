@@ -77,6 +77,12 @@ public class WaveManager : MonoBehaviour
         {
             if (currentWave + 1 >= we.startWave) //+1 because currentWave starts at 0
             {
+
+                if (we.enemyPrefab.CompareTag("Boss"))
+                {
+                    ClearNormalEnemies();
+                }
+
                 enemySpawner.SpawnWave(currentWave, we);
             }
         }
@@ -115,6 +121,15 @@ public class WaveManager : MonoBehaviour
                 timerText.text = $"wave {currentWave}: {minutes:00}:{seconds:00}";
                 skipText.gameObject.SetActive(false);
                 break;
+        }
+    }
+
+    private void ClearNormalEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies)
+        {
+            Destroy(enemy);
         }
     }
 }
