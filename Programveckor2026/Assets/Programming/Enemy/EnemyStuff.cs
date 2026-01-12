@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemyStuff : MonoBehaviour
 {
+    private Playerhealth1 PlayerHealth;
+
     private int health;
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private float speed = 3f;
@@ -17,7 +19,12 @@ public class EnemyStuff : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
-        target = GameObject.FindWithTag("Player")?.transform;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if(player != null)
+        {
+            target = player.transform;
+            PlayerHealth = player.GetComponent<Playerhealth1>();
+        }
         attackCooldown = 0f;
     }
 
@@ -57,7 +64,8 @@ public class EnemyStuff : MonoBehaviour
     }
     private void AttackPlayer() 
     {
-        //place holder also need to make animator and stuff so i can call attack animation here
+        if (PlayerHealth == null) return;
+        PlayerHealth.TakeDamage(damage);
         Debug.Log($"{gameObject.name} attacks the player for {damage} damage");
     }
     private void TakeDamage(int amount)

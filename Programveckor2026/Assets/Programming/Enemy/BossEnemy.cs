@@ -7,6 +7,10 @@ public class BossEnemy : MonoBehaviour
     public float patrolLeftX;
     public float patrolRightX;
 
+    public int slashDamage = 40;
+
+    private Playerhealth1 playerHealth;
+
     //forgot to actually make the erratic movement random...so here is the stuff for that
     public float directionChangeInteralMin = 1f;
     public float directionChangeIntervalMax = 2f;
@@ -30,6 +34,9 @@ public class BossEnemy : MonoBehaviour
 
     private void Start()
     {
+
+        playerHealth = player.GetComponent<Playerhealth1>();
+
         if (player == null)
         {
             player = GameObject.FindWithTag("Player")?.transform;
@@ -112,7 +119,10 @@ public class BossEnemy : MonoBehaviour
 
     void SlashAttack()
     {
-        //boss slash attack here, ima do it later...trust
+        if (playerHealth == null) return;
+        playerHealth.TakeDamage(slashDamage);
+
+        //boss slash attack here, ima do it later...trust plus i need to pair animation with it but now ill do very simple
         Debug.Log("Boss slashed at the player");
     }
 
