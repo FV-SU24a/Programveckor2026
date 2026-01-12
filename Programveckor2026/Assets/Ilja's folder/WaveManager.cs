@@ -4,6 +4,9 @@ using TMPro;
 using System.Collections.Generic;
 public class WaveManager : MonoBehaviour
 {
+    private HashSet<GameObject> spawnedBosses = new HashSet<GameObject>();
+
+
     public List<WaveEnemy> waveEnemies;
 
     public TMP_Text timerText; 
@@ -72,6 +75,16 @@ public class WaveManager : MonoBehaviour
         waveTimer = waveDuration;
         currentWave++;
 
+        bool bossSpawningThisWave = false;
+        foreach (WaveEnemy we in waveEnemies)
+        {
+            if (we.enemyPrefab.CompareTag("Boss") && currentWave + 1 >= we.startWave && !spawnedBosses.Contains(we.enemyPrefab))
+            {
+                bossSpawningThisWave = true;
+                break;
+            }
+        }
+
         //pawn enemies based on waveEnemies list
         foreach (WaveEnemy we in waveEnemies)
         {
@@ -80,10 +93,19 @@ public class WaveManager : MonoBehaviour
 
                 if (we.enemyPrefab.CompareTag("Boss"))
                 {
-                    ClearNormalEnemies();
+                    if (!spawnedBosses.Contains(we.enemyPrefab))
+                    {
+                        ClearNormalEnemies();
+                        enemySpawner.SpawnWave(currentWave, we);
+                        spawnedBosses.Add(we.enemyPrefab);
+                    }
                 }
-
-                enemySpawner.SpawnWave(currentWave, we);
+                else
+                {
+                    // Only spawn normal enemies if no boss is spawning this wave
+                    if (!bossSpawningThisWave)
+                        enemySpawner.SpawnWave(currentWave, we);
+                }
             }
         }
 

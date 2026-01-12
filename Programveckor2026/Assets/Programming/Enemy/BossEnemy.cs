@@ -30,6 +30,16 @@ public class BossEnemy : MonoBehaviour
 
     private void Start()
     {
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player")?.transform;
+            if (player == null)
+            {
+                Debug.LogWarning("Player not found! Make sure it has the 'Player' tag.");
+            }
+        }
+
+
         directionChangeTimer = Random.Range(directionChangeInteralMin, directionChangeIntervalMax);
     }
 
@@ -37,31 +47,23 @@ public class BossEnemy : MonoBehaviour
     private void Update()
     {
         attacktimer -= Time.deltaTime;
-
         float distanceToPlayer = Mathf.Abs(transform.position.x - player.position.x);
 
         if (isRetreating)
         {
             RetreatMovement();
-            return; //skips partrol or charge while retreating
+            return; //skips patrols if its retreating
         }
 
-        if(distanceToPlayer <= attackRange && attacktimer <= 0f)
-        {
+        if (!isCharging && attacktimer <= 0f)
             StartChargeAttack();
-        }
 
         if (isCharging)
-        {
             ChargeMovement();
-        }
         else
-        {
             PatrolMovement();
-        }
-
-        
     }
+
 
     void PatrolMovement()
     {
@@ -85,6 +87,7 @@ public class BossEnemy : MonoBehaviour
     void StartChargeAttack()
     {
         isCharging = true;
+        targetPosition = player.position; //for the charge attack
         attacktimer = attackCooldown; //cooldown for attack
     }
 
@@ -97,13 +100,15 @@ public class BossEnemy : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, currentTarget, step);
 
-       if(Mathf.Abs(transform.position.x - player.position.x) <= attackRange)
+        //stop when close enough to the player to attack
+        if (Mathf.Abs(transform.position.x - player.position.x) <= attackRange)
         {
             isCharging = false;
             SlashAttack();
             StartRetreat();
         }
     }
+
 
     void SlashAttack()
     {
@@ -115,10 +120,12 @@ public class BossEnemy : MonoBehaviour
     {
         isRetreating = true;
 
+        //move opposite the player
         float direction = transform.position.x < player.position.x ? -1f : 1f;
 
         retreatTarget = new Vector3(transform.position.x + direction * retreatDistance, transform.position.y, transform.position.z);
     }
+
 
     void RetreatMovement()
     {
