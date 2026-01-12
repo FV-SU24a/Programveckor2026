@@ -1,38 +1,98 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    [Header("Movement")]
+    public float moveSpeed = 6f;
     public float jumpForce = 12f;
 
+    [Header("Ground Check")]
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.2f;
+    public LayerMask groundLayers;
+
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
     private bool isGrounded;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        // Horizontal movement
-        float move = 0f;
-        if (Input.GetKey(KeyCode.A)) move = -1f;
-        if (Input.GetKey(KeyCode.D)) move = 1f;
+        HandleMovement();
+        HandleJump();
+        HandleDropThrough();
+    }
 
-        rb.linearVelocity = new Vector2(move * moveSpeed, rb.linearVelocity.y);
+    void HandleMovement()
+    {
+        float moveInput = 0f;
 
-        // Flip sprite
-        if (move > 0) transform.localScale = new Vector3(1, 1, 1);
-        if (move < 0) transform.localScale = new Vector3(-1, 1, 1);
+        if (Input.GetKey(KeyCode.A)) moveInput = -1f;
+        if (Input.GetKey(KeyCode.D)) moveInput = 1f;
 
-        // Simple ground check
-        isGrounded = rb.linearVelocity.y == 0;
+        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
-        // Jump
+        // Flip sprite safely (NO scale changes)
+        if (moveInput > 0)
+            sr.flipX = false;
+        else if (moveInput < 0)
+            sr.flipX = true;
+    }
+
+    void HandleJump()
+    {
+        isGrounded = Physics2D.OverlapCircle(
+            groundCheck.position,
+            groundCheckRadius,
+            groundLayers
+        );
+
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
+    }
+
+    void HandleDropThrough()
+    {
+        if (Input.GetKeyDown(KeyCode.S) && isGrounded)
+        {
+            StartCoroutine(DropThroughPlatform());
+        }
+    }
+
+    IEnumerator DropThroughPlatform()
+    {
+        Collider2D playerCollider = GetComponent<Collider2D>();
+
+        Collider2D[] platforms = Physics2D.OverlapCircleAll(
+            transform.position,
+            0.5f,
+            LayerMask.GetMask("Platform")
+        );
+
+        foreach (Collider2D platform in platforms)
+        {
+            Physics2D.IgnoreCollision(playerCollider, platform, true);
+        }
+
+        yield return new WaitForSeconds(0.3f);
+
+        foreach (Collider2D platform in platforms)
+        {
+            Physics2D.IgnoreCollision(playerCollider, platform, false);
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if (groundCheck != null)
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 }

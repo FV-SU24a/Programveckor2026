@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 6351495320441623805}
   - component: {fileID: 3277933469074010018}
   - component: {fileID: 894100124682015119}
+  - component: {fileID: 7646876778891945276}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -217,6 +218,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   moveSpeed: 7
   jumpForce: 15
+  groundCheck: {fileID: 0}
+  groundCheckRadius: 0.2
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &894100124682015119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,10 +237,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   attackPoint: {fileID: 4396191524764260192}
   attackRange: 0.5
+  baseDamage: 1
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   attackCooldown: 0.4
+  weaponDamage: 0
+--- !u!114 &7646876778891945276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990108601218520256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9760fbbd88de0ef4383cfb4295eeaff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponPickup
+  weapon: {fileID: 0}
 --- !u!1 &3779189238159545123
 GameObject:
   m_ObjectHideFlags: 0
