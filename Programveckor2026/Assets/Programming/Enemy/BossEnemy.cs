@@ -34,21 +34,30 @@ public class BossEnemy : MonoBehaviour
 
     private void Start()
     {
-
-        playerHealth = player.GetComponent<Playerhealth1>();
-
         if (player == null)
         {
-            player = GameObject.FindWithTag("Player")?.transform;
-            if (player == null)
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null)
+            {
+                player = playerObj.transform;
+                playerHealth = playerObj.GetComponent<Playerhealth1>();
+            }
+            else
             {
                 Debug.LogWarning("Player not found! Make sure it has the 'Player' tag.");
+                enabled = false; // stop this script safely
+                return;
             }
         }
-
+        else
+        {
+            // only get Playerhealth if player was already assigned in inspector
+            playerHealth = player.GetComponent<Playerhealth1>();
+        }
 
         directionChangeTimer = Random.Range(directionChangeInteralMin, directionChangeIntervalMax);
     }
+
 
 
     private void Update()

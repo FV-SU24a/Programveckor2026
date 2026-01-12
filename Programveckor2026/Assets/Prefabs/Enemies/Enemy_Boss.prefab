@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4503051285176925382}
   - component: {fileID: -6888126258790008766}
   - component: {fileID: -2541160506548859778}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy_Boss
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -124,6 +124,7 @@ MonoBehaviour:
   moveSpeed: 3
   patrolLeftX: -2
   patrolRightX: 4
+  slashDamage: 40
   directionChangeInteralMin: 1
   directionChangeIntervalMax: 2
   retreatDistance: 1.86

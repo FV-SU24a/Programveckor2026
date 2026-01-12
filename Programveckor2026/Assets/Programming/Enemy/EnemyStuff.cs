@@ -68,7 +68,7 @@ public class EnemyStuff : MonoBehaviour
         PlayerHealth.TakeDamage(damage);
         Debug.Log($"{gameObject.name} attacks the player for {damage} damage");
     }
-    private void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         if (!isAlive) return;
         health -= amount;
