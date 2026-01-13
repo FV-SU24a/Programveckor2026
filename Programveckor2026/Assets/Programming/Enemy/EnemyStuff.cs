@@ -1,8 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyStuff : MonoBehaviour
 {
     private Playerhealth1 PlayerHealth;
+
+    private bool isAttacking = false;
 
     private int health;
     [SerializeField] private int maxHealth = 100;
@@ -62,11 +65,29 @@ public class EnemyStuff : MonoBehaviour
         Vector2 direction = (target.position - transform.position).normalized;
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
-    private void AttackPlayer() 
+    private void AttackPlayer()
     {
         if (PlayerHealth == null) return;
+
+        isAttacking = true; // start attack
+
         PlayerHealth.TakeDamage(damage);
         Debug.Log($"{gameObject.name} attacks the player for {damage} damage");
+
+        // Reset attack state after a short delay so animation can play
+        StartCoroutine(ResetAttackState());
+    }
+
+    private IEnumerator ResetAttackState()
+    {
+        yield return new WaitForSeconds(0.2f); // match roughly the animation timing
+        isAttacking = false;
+    }
+
+    // public accessor for other scripts
+    public bool IsAttacking()
+    {
+        return isAttacking;
     }
     public void TakeDamage(int amount)
     {

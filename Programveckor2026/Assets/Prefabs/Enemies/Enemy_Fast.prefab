@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1737631340377836388}
   - component: {fileID: 8495565532266032695}
   - component: {fileID: 3702611580937024600}
+  - component: {fileID: 3292084760268815204}
   m_Layer: 6
   m_Name: Enemy_Fast
   m_TagString: Enemy
@@ -81,12 +82,12 @@ SpriteRenderer:
   m_SortingLayerID: -619328261
   m_SortingLayer: 1
   m_SortingOrder: 20
-  m_Sprite: {fileID: -7054667149432175038, guid: 0b51e7bf41089dc4f958891109deac9c, type: 3}
+  m_Sprite: {fileID: -2621292089643715353, guid: 0b51e7bf41089dc4f958891109deac9c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -119,7 +120,7 @@ Animator:
   m_GameObject: {fileID: 6979144756740068588}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -5007898719337882896, guid: 0b51e7bf41089dc4f958891109deac9c, type: 3}
+  m_Controller: {fileID: 9100000, guid: 9ee914d78972ef442bce5c87c542050a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -131,3 +132,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3292084760268815204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6979144756740068588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d03a6dcabed2349b8c4a0f9c35d411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeperateAnimEnemy
+  animator: {fileID: 3702611580937024600}
+  attackTriggerName: Attack

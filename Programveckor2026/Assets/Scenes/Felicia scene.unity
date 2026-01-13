@@ -867,11 +867,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
   waveEnemies:
   - enemyPrefab: {fileID: 959491518168199772, guid: 08cf1a4a21a414b4a949b72b42172499, type: 3}
-    startWave: 0
+    startWave: 10
     baseCount: 2
     perWaveIncrease: 2
   - enemyPrefab: {fileID: 6979144756740068588, guid: 636b3a91d30d72746bd898d676e44977, type: 3}
-    startWave: 5
+    startWave: 0
     baseCount: 3
     perWaveIncrease: 2
   - enemyPrefab: {fileID: 4515990791145139368, guid: ccfdf3ad8801bdc4f849c2564f0e4133, type: 3}
