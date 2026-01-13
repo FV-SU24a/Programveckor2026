@@ -202,7 +202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 154.83104, y: 566}
+  m_AnchoredPosition: {x: 117, y: 469}
   m_SizeDelta: {x: 607.1121, y: 154.3145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &207866895
@@ -417,7 +417,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1069.5492, y: -654.6195}
+  m_AnchoredPosition: {x: -749, y: -472}
   m_SizeDelta: {x: 420.9016, y: 130.7611}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &702400630
@@ -791,7 +791,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1236, y: -687}
+  m_AnchoredPosition: {x: 887, y: -500}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1049862725
@@ -1043,8 +1043,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b8ee5f4c584e04f96ee4323c080038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Playerhealth1
-  health: 150
-  maxHealth: 150
+  health: 1000
+  maxHealth: 1000
   healthText: {fileID: 1049862725}
 --- !u!1 &1586881043
 GameObject:
