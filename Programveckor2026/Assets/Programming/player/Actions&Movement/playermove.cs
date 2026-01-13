@@ -10,19 +10,10 @@ public class playermove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 vel = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            vel.y = 1;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            vel.y = -1;
-        }
         if (Input.GetKey(KeyCode.D))
         {
             vel.x = 1;

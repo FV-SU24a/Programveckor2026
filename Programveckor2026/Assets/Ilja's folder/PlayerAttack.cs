@@ -41,7 +41,7 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (Collider2D hit in hitEnemies)
         {
-            EnemyHealth enemyHealth = hit.GetComponentInParent<EnemyHealth>();
+            EnemyStuff enemyHealth = hit.GetComponentInParent<EnemyStuff>();
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(weaponDamage);
