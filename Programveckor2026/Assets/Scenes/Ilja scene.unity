@@ -1242,6 +1242,7 @@ MonoBehaviour:
   waveDuration: 300
   downtimeTimer: 0
   waveTimer: 0
+  isBossWaveThisRound: 0
 --- !u!4 &1899851294
 Transform:
   m_ObjectHideFlags: 0
