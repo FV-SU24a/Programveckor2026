@@ -77,14 +77,13 @@ public class BossEnemy : MonoBehaviour
 
         if (!isCharging && !isAttacking && meleeCooldownTimer <= 0f && distanceToPlayer <= attackRange)
         {
-            SlashAttack();
-            meleeCooldownTimer = attackCooldown; // reset melee cooldown
+            TriggerMeleeAttack();
         }
 
         if (isRetreating)
         {
             RetreatMovement();
-            return; //skips patrols if its retreating
+            return; // skip patrols while retreating
         }
 
         if (!isCharging && chargeCooldownTimer <= 0f)
@@ -138,30 +137,36 @@ public class BossEnemy : MonoBehaviour
         if (Mathf.Abs(transform.position.x - player.position.x) <= attackRange)
         {
             isCharging = false;
-            SlashAttack();
+            StartCoroutine(PerformSlashAttack());
             StartRetreat();
         }
     }
 
 
-    void SlashAttack()
-    {
-        if (playerHealth == null) return;
 
-        isAttacking = true;
+    private IEnumerator PerformSlashAttack()
+    {
         animator.SetTrigger("Attack");
-        StartCoroutine(DealSlashDamageRoutine());
+
+        // wait until the slash hits
+        yield return new WaitForSeconds(0.5f);
+        playerHealth?.TakeDamage(slashDamage);
+
+        // wait until animation ends
+        yield return new WaitForSeconds(0.3f);
+
+        // allow boss to attack again after cooldown is fully respected
+        isAttacking = false;
     }
 
-    private IEnumerator DealSlashDamageRoutine()
+    private void TriggerMeleeAttack()
     {
+        //block further attacks immediately
+        isAttacking = true;
+        meleeCooldownTimer = attackCooldown;
 
-        //wait until the slash actually visually hits the player
-        yield return new WaitForSeconds(0.5f); //this can be adjusted since due
-        playerHealth.TakeDamage(slashDamage);
-
-        yield return new WaitForSeconds(0.3f); //this can be adjutsted to match the end
-        isAttacking = false;
+        //start the attack coroutine
+        StartCoroutine(PerformSlashAttack());
     }
 
 
