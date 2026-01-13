@@ -123,16 +123,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossEnemy
   moveSpeed: 3
-  patrolLeftX: -2
-  patrolRightX: 4
+  patrolLeftX: -7.6
+  patrolRightX: 3
   slashDamage: 40
+  animator: {fileID: 0}
   directionChangeInteralMin: 1
   directionChangeIntervalMax: 2
-  retreatDistance: 1.86
-  retreatSpeed: 4
-  attackRange: 2
+  retreatDistance: 4
+  retreatSpeed: 6
+  attackRange: 1
   chargeSpeed: 8
-  attackCooldown: 3
+  attackCooldown: 5
   player: {fileID: 0}
 --- !u!95 &6393597450840297810
 Animator:
@@ -144,7 +145,7 @@ Animator:
   m_GameObject: {fileID: 1173877133439795922}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 7565261703412565505, guid: b52f0d3a52d42e64e868931de7374c31, type: 3}
+  m_Controller: {fileID: 9100000, guid: ea6e418036c538e448abaff5d904777b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

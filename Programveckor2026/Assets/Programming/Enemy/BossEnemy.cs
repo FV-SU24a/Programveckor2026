@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
@@ -21,18 +22,19 @@ public class BossEnemy : MonoBehaviour
 
     private bool isRetreating = false;
     public float retreatDistance = 1f;
-    public float retreatSpeed = 4f;
+    public float retreatSpeed = 6f;
     private Vector3 retreatTarget; //the x position it retreats to
 
     public float attackRange = 2f;
     public float chargeSpeed = 8f;
-    public float attackCooldown = 3f;
+    public float attackCooldown = 5f;
     private bool isAttacking = false;
 
 
     public Transform player;
 
-    private float attacktimer = 0f;
+    private float meleeCooldownTimer = 0f;
+    private float chargeCooldownTimer = 0f;
     private bool isCharging = false;
     private Vector3 targetPosition; //for the charge attack
 
@@ -68,11 +70,16 @@ public class BossEnemy : MonoBehaviour
 
     private void Update()
     {
+        meleeCooldownTimer -= Time.deltaTime;
+        chargeCooldownTimer -= Time.deltaTime;
 
-        if (isAttacking) return;
-
-        attacktimer -= Time.deltaTime;
         float distanceToPlayer = Mathf.Abs(transform.position.x - player.position.x);
+
+        if (!isCharging && !isAttacking && meleeCooldownTimer <= 0f && distanceToPlayer <= attackRange)
+        {
+            SlashAttack();
+            meleeCooldownTimer = attackCooldown; // reset melee cooldown
+        }
 
         if (isRetreating)
         {
@@ -80,8 +87,11 @@ public class BossEnemy : MonoBehaviour
             return; //skips patrols if its retreating
         }
 
-        if (!isCharging && attacktimer <= 0f)
+        if (!isCharging && chargeCooldownTimer <= 0f)
+        {
             StartChargeAttack();
+            chargeCooldownTimer = attackCooldown; // reset charge cooldown
+        }
 
         if (isCharging)
             ChargeMovement();
@@ -113,7 +123,6 @@ public class BossEnemy : MonoBehaviour
     {
         isCharging = true;
         targetPosition = player.position; //for the charge attack
-        attacktimer = attackCooldown; //cooldown for attack
     }
 
     void ChargeMovement()
@@ -141,20 +150,20 @@ public class BossEnemy : MonoBehaviour
 
         isAttacking = true;
         animator.SetTrigger("Attack");
+        StartCoroutine(DealSlashDamageRoutine());
     }
 
-    void DealSlashDamage()
+    private IEnumerator DealSlashDamageRoutine()
     {
-        if (playerHealth == null) return;
 
+        //wait until the slash actually visually hits the player
+        yield return new WaitForSeconds(0.5f); //this can be adjusted since due
         playerHealth.TakeDamage(slashDamage);
-        Debug.Log("Boss slashed the player");
-    }
 
-    public void EndAttack()
-    {
+        yield return new WaitForSeconds(0.3f); //this can be adjutsted to match the end
         isAttacking = false;
     }
+
 
     void StartRetreat()
     {
