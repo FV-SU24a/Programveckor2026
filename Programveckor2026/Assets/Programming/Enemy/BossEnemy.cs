@@ -11,6 +11,8 @@ public class BossEnemy : MonoBehaviour
 
     private Playerhealth1 playerHealth;
 
+    public Animator animator;
+
     //forgot to actually make the erratic movement random...so here is the stuff for that
     public float directionChangeInteralMin = 1f;
     public float directionChangeIntervalMax = 2f;
@@ -25,6 +27,8 @@ public class BossEnemy : MonoBehaviour
     public float attackRange = 2f;
     public float chargeSpeed = 8f;
     public float attackCooldown = 3f;
+    private bool isAttacking = false;
+
 
     public Transform player;
 
@@ -34,6 +38,8 @@ public class BossEnemy : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
+
         if (player == null)
         {
             GameObject playerObj = GameObject.FindWithTag("Player");
@@ -62,6 +68,9 @@ public class BossEnemy : MonoBehaviour
 
     private void Update()
     {
+
+        if (isAttacking) return;
+
         attacktimer -= Time.deltaTime;
         float distanceToPlayer = Mathf.Abs(transform.position.x - player.position.x);
 
@@ -94,7 +103,7 @@ public class BossEnemy : MonoBehaviour
         float step = moveSpeed * Time.deltaTime;
         transform.position += (movingRight ? Vector3.right : Vector3.left) * step;
 
-        //stay inside its little bubble..or yknow doesnt move past specific points
+        //stay inside its little bubble..or yknow doesnt move past specific points so it doesnt run away
         if (transform.position.x >= patrolRightX) movingRight = false;
         if (transform.position.x <= patrolLeftX) movingRight = true;
 
@@ -129,10 +138,22 @@ public class BossEnemy : MonoBehaviour
     void SlashAttack()
     {
         if (playerHealth == null) return;
-        playerHealth.TakeDamage(slashDamage);
 
-        //boss slash attack here, ima do it later...trust plus i need to pair animation with it but now ill do very simple
-        Debug.Log("Boss slashed at the player");
+        isAttacking = true;
+        animator.SetTrigger("Attack");
+    }
+
+    void DealSlashDamage()
+    {
+        if (playerHealth == null) return;
+
+        playerHealth.TakeDamage(slashDamage);
+        Debug.Log("Boss slashed the player");
+    }
+
+    public void EndAttack()
+    {
+        isAttacking = false;
     }
 
     void StartRetreat()
