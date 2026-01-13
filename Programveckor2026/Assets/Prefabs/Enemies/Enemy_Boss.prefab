@@ -125,7 +125,7 @@ MonoBehaviour:
   moveSpeed: 3
   patrolLeftX: -7.6
   patrolRightX: 3
-  slashDamage: 40
+  slashDamage: 20
   animator: {fileID: 0}
   directionChangeInteralMin: 1
   directionChangeIntervalMax: 2
