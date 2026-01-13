@@ -673,6 +673,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+--- !u!1 &854102391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 854102393}
+  - component: {fileID: 854102392}
+  m_Layer: 0
+  m_Name: Enemyspawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &854102392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854102391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87727c9827bfde14d82af2432e2de984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::enemyspawn
+  enemyPrefab: {fileID: 959491518168199772, guid: 08cf1a4a21a414b4a949b72b42172499, type: 3}
+  player: {fileID: 1791983456}
+  spawnRate: 1
+  spawnOffset: 1
+  spawnY: -3.911181
+--- !u!4 &854102393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854102391}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &941787536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,6 +1205,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1791983456 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 316818801126558553, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+  m_PrefabInstance: {fileID: 739875605}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1810445237
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,7 +1291,7 @@ MonoBehaviour:
   skipText: {fileID: 0}
   currentWave: 0
   weaponPool: {fileID: 1810445238}
-  enemySpawner: {fileID: 0}
+  enemySpawner: {fileID: 854102392}
   downtimeDuration: 180
   waveDuration: 300
   downtimeTimer: 0
@@ -1374,3 +1428,4 @@ SceneRoots:
   - {fileID: 1157404878}
   - {fileID: 1110191266}
   - {fileID: 465115214}
+  - {fileID: 854102393}
