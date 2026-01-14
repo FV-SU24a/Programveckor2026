@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 3277933469074010018}
   - component: {fileID: 894100124682015119}
   - component: {fileID: 7646876778891945276}
+  - component: {fileID: 6595178126298814268}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -256,6 +257,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponPickup
   weapon: {fileID: 0}
+  pickupKey: 102
+--- !u!114 &6595178126298814268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990108601218520256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b8ee5f4c584e04f96ee4323c080038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Playerhealth1
+  health: 150
+  maxHealth: 150
+  healthText: {fileID: 0}
 --- !u!1 &3779189238159545123
 GameObject:
   m_ObjectHideFlags: 0
