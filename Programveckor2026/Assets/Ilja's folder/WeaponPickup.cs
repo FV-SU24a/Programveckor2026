@@ -3,7 +3,7 @@ using UnityEngine;
 public class WeaponPickup : MonoBehaviour
 {
     [Header("Weapon Data")]
-    public Weapon weapon;
+    public WeaponData weapon;
 
     [Header("Pickup Settings")]
     public KeyCode pickupKey = KeyCode.F;
