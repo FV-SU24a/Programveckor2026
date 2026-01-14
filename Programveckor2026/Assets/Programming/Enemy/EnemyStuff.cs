@@ -7,8 +7,8 @@ public class EnemyStuff : MonoBehaviour
 
     private bool isAttacking = false;
 
-    private int health;
     [SerializeField] private int maxHealth = 100;
+    private int currentHealth = 100;
     [SerializeField] private float speed = 3f;
     [SerializeField] private int damage = 10;
     [SerializeField] private float attackRange = 2f;
@@ -19,9 +19,10 @@ public class EnemyStuff : MonoBehaviour
     private Transform target;
     private float attackCooldown;
 
+
     private void Start()
     {
-        health = maxHealth;
+        currentHealth = maxHealth;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if(player != null)
         {
@@ -92,8 +93,19 @@ public class EnemyStuff : MonoBehaviour
     public void TakeDamage(int amount)
     {
         if (!isAlive) return;
-        health -= amount;
-        if(health <= 0)
+        currentHealth -= amount;
+        if(currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void TakePlayerDamage(int amount)
+    {
+        currentHealth -= amount;
+        Debug.Log($"{gameObject.name} took {amount} damage from player, remaining health: {currentHealth}");
+
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -102,8 +114,7 @@ public class EnemyStuff : MonoBehaviour
     private void Die()
     {
         isAlive = false;
-        Debug.Log($"{gameObject.name} died");
-
-        Destroy(gameObject, 1f); //delay if death animation comes
+        Debug.Log($"{gameObject.name} died from player attack!");
+        Destroy(gameObject);
     }
 }

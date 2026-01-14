@@ -657,7 +657,6 @@ GameObject:
   - component: {fileID: 690689659}
   - component: {fileID: 690689658}
   - component: {fileID: 690689660}
-  - component: {fileID: 690689662}
   - component: {fileID: 690689661}
   m_Layer: 0
   m_Name: Square
@@ -862,27 +861,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   attackPoint: {fileID: 838244398}
-  attackRange: 0.5
-  baseDamage: 1
+  attackRange: 2
+  baseDamage: 100
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
   attackCooldown: 0.4
   weaponDamage: 0
---- !u!114 &690689662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690689654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9760fbbd88de0ef4383cfb4295eeaff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponPickup
-  weapon: {fileID: 0}
-  pickupKey: 102
 --- !u!1 &702400628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,8 +1031,8 @@ Transform:
   m_GameObject: {fileID: 838244397}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.27, y: 0.11, z: 0}
-  m_LocalScale: {x: 1.4493799, y: 4.15451, z: 1}
+  m_LocalPosition: {x: -1.27, y: -0.42, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 690689656}

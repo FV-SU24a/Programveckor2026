@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: Rare Sword
   damage: 100
-  range: 0.5
+  range: 2
   weaponPrefab: {fileID: 5829677810778504462, guid: 784e7d3f8147d79429d9b5a63e5f373d, type: 3}
   unlockWave: 1
