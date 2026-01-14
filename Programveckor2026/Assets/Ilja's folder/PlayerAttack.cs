@@ -60,7 +60,7 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("Attacked " + (sr.flipX ? "left" : "right") + " for " + weaponDamage + " damage.");
     }
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
         if (attackPoint == null || sr == null) return;
 

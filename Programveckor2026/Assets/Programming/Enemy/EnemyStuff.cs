@@ -20,6 +20,7 @@ public class EnemyStuff : MonoBehaviour
     private float attackCooldown;
 
 
+
     private void Start()
     {
         currentHealth = maxHealth;
