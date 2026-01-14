@@ -1,5 +1,6 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 public class Playerhealth1 : MonoBehaviour
 {
 
@@ -25,7 +26,7 @@ public class Playerhealth1 : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+          SceneManager.LoadScene(0);
         }
     }
 
