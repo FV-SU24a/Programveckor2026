@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && Time.time >= nextAttackTime)
+        if (Input.GetKeyDown(KeyCode.E) ) //Time.time >= nextAttackTime)
         {
             Attack();
             nextAttackTime = Time.time + attackCooldown;
@@ -40,7 +40,7 @@ public class PlayerAttack : MonoBehaviour
 
         // Detect enemies
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPos, attackRange, enemyLayers);
-
+        print("length enemies: " + hitEnemies.Length);
         Debug.Log($"Enemies hit count: {hitEnemies.Length}");
 
         foreach (Collider2D hit in hitEnemies)
@@ -49,7 +49,7 @@ public class PlayerAttack : MonoBehaviour
             if (enemyHealth != null)
             {
                 Debug.Log($"Hit enemy: {enemyHealth.name}");
-                enemyHealth.TakePlayerDamage(weaponDamage);
+                enemyHealth.TakeDamage(weaponDamage);
             }
             else
             {

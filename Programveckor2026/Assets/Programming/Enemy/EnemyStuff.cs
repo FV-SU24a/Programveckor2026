@@ -1,121 +1,87 @@
 using System.Collections;
+using System.Xml.Linq;
 using UnityEngine;
 
 public class EnemyStuff : MonoBehaviour
 {
-    private Playerhealth1 PlayerHealth;
-
-    private bool isAttacking = false;
-
     [SerializeField] private int maxHealth = 100;
-    private int currentHealth = 100;
+    private int currentHealth;
     [SerializeField] private float speed = 3f;
     [SerializeField] private int damage = 10;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float attackRate = 3f;
 
     private bool isAlive = true;
+    private bool isAttacking = false;
 
     private Transform target;
+    private Playerhealth1 playerHealth;
     private float attackCooldown;
 
-
+    private Rigidbody2D rb;
 
     private void Start()
     {
         currentHealth = maxHealth;
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if(player != null)
-        {
-            target = player.transform;
-            PlayerHealth = player.GetComponent<Playerhealth1>();
-        }
+        target = GameObject.FindGameObjectWithTag("Player")?.transform;
+        playerHealth = target?.GetComponent<Playerhealth1>();
         attackCooldown = 0f;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
+        if (!isAlive || target == null || CompareTag("Boss")) return;
 
-        if (CompareTag("Boss")) return; //if its a boss it ignores all normal behaviour
-
-        if (!isAlive || target == null) return;
-
-        //distance to player
         float distance = Vector2.Distance(transform.position, target.position);
-        //move if outside the attack range
-        if(distance > attackRange) 
-        {
+
+        if (distance > attackRange)
             MoveTowardsPlayer();
-        }
-        else
-        {
-            //try attacking if cooldown allows
-            if(attackCooldown <= 0)
-            {
-                AttackPlayer();
-                attackCooldown = attackRate;
-            }
-        }
+        else if (attackCooldown <= 0)
+            AttackPlayer();
 
-        //reduce attack cool down each frame
         if (attackCooldown > 0) attackCooldown -= Time.deltaTime;
-
     }
 
-    private void MoveTowardsPlayer() 
+    private void MoveTowardsPlayer()
     {
         Vector2 direction = (target.position - transform.position).normalized;
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
+
     private void AttackPlayer()
     {
-        if (PlayerHealth == null) return;
+        if (playerHealth == null) return;
 
-        isAttacking = true; // start attack
+        isAttacking = true;
+        playerHealth.TakeDamage(damage);
+        Debug.Log($"{name} attacks the player for {damage} damage");
+        attackCooldown = attackRate;
 
-        PlayerHealth.TakeDamage(damage);
-        Debug.Log($"{gameObject.name} attacks the player for {damage} damage");
-
-        // Reset attack state after a short delay so animation can play
         StartCoroutine(ResetAttackState());
     }
 
     private IEnumerator ResetAttackState()
     {
-        yield return new WaitForSeconds(0.2f); // match roughly the animation timing
+        yield return new WaitForSeconds(0.2f);
         isAttacking = false;
     }
 
-    // public accessor for other scripts
-    public bool IsAttacking()
-    {
-        return isAttacking;
-    }
     public void TakeDamage(int amount)
     {
         if (!isAlive) return;
         currentHealth -= amount;
-        if(currentHealth <= 0)
-        {
-            Die();
-        }
-    }
+        Debug.Log($"{name} took {amount} damage, remaining health: {currentHealth}");
 
-    public void TakePlayerDamage(int amount)
-    {
-        currentHealth -= amount;
-        Debug.Log($"{gameObject.name} took {amount} damage from player, remaining health: {currentHealth}");
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+        if (currentHealth <= 0) Die();
     }
 
     private void Die()
     {
         isAlive = false;
-        Debug.Log($"{gameObject.name} died from player attack!");
+        Debug.Log($"{name} died!");
         Destroy(gameObject);
     }
+
+    public bool IsAttacking() => isAttacking;
 }
