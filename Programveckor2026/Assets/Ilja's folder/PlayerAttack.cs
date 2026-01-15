@@ -2,6 +2,8 @@
 
 public class PlayerAttack : MonoBehaviour
 {
+    private Animator anim;
+
     [Header("Attack Settings")]
     public Transform attackPoint;
     public float attackRange = 2f;
@@ -17,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Awake()
     {
+        anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         weaponDamage = baseDamage; // start with default damage
     }
@@ -25,6 +28,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) ) //Time.time >= nextAttackTime)
         {
+
             Attack();
             nextAttackTime = Time.time + attackCooldown;
         }
