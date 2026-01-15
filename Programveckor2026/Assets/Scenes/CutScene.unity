@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneController
   cutsceneDuration: 5.5
-  nextSceneName: Ilja scene
+  nextSceneName: Felicia scene
 --- !u!4 &290651252
 Transform:
   m_ObjectHideFlags: 0
