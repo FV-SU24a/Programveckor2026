@@ -204,7 +204,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a18f77fd2c1ba4390b15aca5617536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStuff
-  maxHealth: 100
+  maxHealth: 125
   speed: 3
   damage: 10
   attackRange: 2

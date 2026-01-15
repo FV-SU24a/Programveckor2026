@@ -47,11 +47,23 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleJump()
     {
-        isGrounded = Physics2D.OverlapCircle(
+        isGrounded = false;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
             groundCheck.position,
             groundCheckRadius,
             groundLayers
         );
+
+        foreach (Collider2D hit in hits)
+        {
+            // Make sure we are above the collider
+            if (transform.position.y > hit.bounds.center.y)
+            {
+                isGrounded = true;
+                break;
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {

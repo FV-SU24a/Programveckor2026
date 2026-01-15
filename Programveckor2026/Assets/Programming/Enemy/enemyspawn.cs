@@ -25,7 +25,8 @@ public class enemyspawn : MonoBehaviour
             if (WaveManager.Instance.isBossWaveThisRound && !waveEnemy.enemyPrefab.CompareTag("Boss"))
                 yield break;
 
-            float spawnX = player.position.x - (Camera.main.orthographicSize * Camera.main.aspect + spawnOffset);
+            float cameraLeftEdge = Camera.main.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect;
+            float spawnX = cameraLeftEdge - spawnOffset - 3f; // spawn safely off-screen so player doesn tsee
             Vector3 spawnPos = new Vector3(spawnX, spawnY, 0f);
 
             Instantiate(waveEnemy.enemyPrefab, spawnPos, Quaternion.identity);
