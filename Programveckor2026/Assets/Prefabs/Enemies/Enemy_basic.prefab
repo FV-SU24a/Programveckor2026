@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8509106843333812862}
   - component: {fileID: 633441838661713200}
   - component: {fileID: -3472203670092161678}
+  - component: {fileID: -4508126141334568705}
   m_Layer: 6
   m_Name: Enemy_basic
   m_TagString: Enemy
@@ -121,7 +122,7 @@ Animator:
   m_GameObject: {fileID: 959491518168199772}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 5647786090380732306, guid: 988ec53cbb17c9a419239194d0a17aff, type: 3}
+  m_Controller: {fileID: 9100000, guid: 9ac5d4200ae263b49ab2a02ddf84e42a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -206,3 +207,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-4508126141334568705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959491518168199772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d03a6dcabed2349b8c4a0f9c35d411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeperateAnimEnemy
+  animator: {fileID: 8509106843333812862}
+  attackTriggerName: Attack
