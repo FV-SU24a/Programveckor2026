@@ -154,9 +154,13 @@ public class BossEnemy : MonoBehaviour
 
         // Use attack offset to match arm reach
         Vector2 attackPos = (Vector2)rb.position + attackOffset;
-        if (Vector2.Distance(attackPos, player.position) <= attackRange)
+
+        // Physics check: is the player inside the attack circle?
+        Collider2D hitPlayer = Physics2D.OverlapCircle(attackPos, attackRange, LayerMask.GetMask("Player"));
+        if (hitPlayer != null)
         {
-            playerHealth?.TakeDamage(slashDamage);
+            Playerhealth1 ph = hitPlayer.GetComponent<Playerhealth1>();
+            ph?.TakeDamage(slashDamage);
         }
 
         yield return new WaitForSeconds(0.3f); // finish animation

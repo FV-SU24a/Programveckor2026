@@ -125,12 +125,23 @@ public class WaveManager : MonoBehaviour
     void HandleActiveWave()
     {
         waveTimer -= Time.deltaTime;
+
+        // Check if all enemies are dead
+        if (!AreEnemiesAlive())
+        {
+            Debug.Log($"Wave {currentWave} ended (all enemies defeated). Starting downtime.");
+            StartDownTime();
+            return;
+        }
+
+        // Optional: also end if timer expires
         if (waveTimer <= 0f)
         {
             Debug.Log($"Wave {currentWave} ended (timer expired). Starting downtime.");
             StartDownTime();
         }
     }
+
 
     void UpdateUi()
     {
@@ -160,4 +171,14 @@ public class WaveManager : MonoBehaviour
             if (!enemy.CompareTag("Boss")) Destroy(enemy);
         }
     }
+
+    private bool AreEnemiesAlive()
+    {
+        // Check if any normal enemies exist
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] bosses = GameObject.FindGameObjectsWithTag("Boss");
+
+        return enemies.Length > 0 || bosses.Length > 0;
+    }
+
 }
