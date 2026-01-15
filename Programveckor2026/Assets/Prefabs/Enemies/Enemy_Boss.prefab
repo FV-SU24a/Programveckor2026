@@ -108,12 +108,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossEnemy
   moveSpeed: 3
-  patrolLeftX: -11
-  patrolRightX: -2
-  directionChangeIntervalMin: 1
-  directionChangeIntervalMax: 2
+  patrolLeftX: -36.4
+  patrolRightX: -1.021488
+  directionChangeIntervalMin: 2
+  directionChangeIntervalMax: 3
   retreatDistance: 4
-  retreatSpeed: 6
+  retreatSpeed: 8
   slashDamage: 20
   attackRange: 2
   attackOffset: {x: 1, y: 2}
