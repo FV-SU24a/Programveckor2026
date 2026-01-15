@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Animator anim;
+
     [Header("Movement")]
     public float moveSpeed = 6f;
     public float jumpForce = 12f;
@@ -18,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
     }
@@ -38,11 +41,13 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
+        anim.SetBool("isWalking", moveInput != 0);
+
         // Flip sprite safely (NO scale changes)
         if (moveInput > 0)
-            sr.flipX = false;
-        else if (moveInput < 0)
             sr.flipX = true;
+        else if (moveInput < 0)
+            sr.flipX =false;
     }
 
     void HandleJump()

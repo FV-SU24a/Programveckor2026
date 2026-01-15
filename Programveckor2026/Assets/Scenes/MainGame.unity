@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyspawn
   enemyPrefab: {fileID: 959491518168199772, guid: 08cf1a4a21a414b4a949b72b42172499, type: 3}
-  player: {fileID: 1073823877}
+  player: {fileID: 0}
   spawnRate: 1
   spawnOffset: 1
   spawnY: -3.911181
@@ -473,6 +473,38 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &700182571 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1990108601218520256, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+  m_PrefabInstance: {fileID: 748355000}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &700182572 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7721830687643707621, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+  m_PrefabInstance: {fileID: 748355000}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &700182580
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700182571}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2b499951c7e7324e830edb752fae1d6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &748355000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -533,6 +565,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4396191524764260192, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.78
+      objectReference: {fileID: 0}
     - target: {fileID: 4660946247057690223, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_GravityScale
       value: 1
@@ -545,6 +581,42 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6326099434938523493, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351495320441623805, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351495320441623805, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_Size.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351495320441623805, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_Offset.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351495320441623805, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.43137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351495320441623805, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351495320441623805, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 4.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351495320441623805, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 4.4166665
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451653104353418741, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2972734272439725071, guid: 62e6a3347355c544ea463d0b5f08a8ab, type: 3}
     - target: {fileID: 6451653104353418741, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -561,6 +633,18 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 849983455}
+    - target: {fileID: 7106241429225536389, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721830687643707621, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721830687643707621, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7721830687643707621, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.63
@@ -576,7 +660,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1990108601218520256, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 700182580}
   m_SourcePrefab: {fileID: 100100000, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
 --- !u!1 &827876716
 GameObject:
@@ -852,22 +939,6 @@ RectTransform:
   m_AnchoredPosition: {x: 887, y: -500}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &1073823877 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7721830687643707621, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
-  m_PrefabInstance: {fileID: 748355000}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1073823878 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6595178126298814268, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
-  m_PrefabInstance: {fileID: 748355000}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09b8ee5f4c584e04f96ee4323c080038, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Playerhealth1
 --- !u!1 &1101202387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,7 +1341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63cc0c579f7846d4e969485f975d785b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::heartdestroyer
-  player: {fileID: 1073823878}
+  player: {fileID: 0}
   lifeImages:
   - {fileID: 1757175347}
   - {fileID: 1954820087}
@@ -1882,7 +1953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::camfollow
   FollowSpeed: 2
   yOffset: 1
-  target: {fileID: 1073823877}
+  target: {fileID: 700182572}
 --- !u!1 &1757175347
 GameObject:
   m_ObjectHideFlags: 0
