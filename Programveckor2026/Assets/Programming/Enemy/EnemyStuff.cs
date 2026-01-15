@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyStuff : MonoBehaviour
 {
+    private SpriteRenderer sr;
+
     [SerializeField] private int maxHealth = 100;
     private int currentHealth;
     [SerializeField] private float speed = 3f;
@@ -26,6 +28,7 @@ public class EnemyStuff : MonoBehaviour
 
     private void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
 
@@ -73,6 +76,12 @@ public class EnemyStuff : MonoBehaviour
 
         // Calculate horizontal distance only
         float distanceX = target.position.x - transform.position.x;
+
+        // Flip sprite to face player
+        if (distanceX > 0)
+            sr.flipX = false;
+        else if (distanceX < 0)
+            sr.flipX = true;
 
         // Only move if outside attack range
         if (Mathf.Abs(distanceX) > attackRange)
