@@ -124,7 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9760fbbd88de0ef4383cfb4295eeaff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponPickup
-  weapon: {fileID: 0}
+  weapon: {fileID: 11400000, guid: fc603722eb049ef4499ae5a3112282fd, type: 2}
+  pickupKey: 102
 --- !u!61 &1244400817095387005
 BoxCollider2D:
   m_ObjectHideFlags: 0
