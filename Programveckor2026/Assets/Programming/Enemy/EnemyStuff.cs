@@ -50,9 +50,28 @@ public class EnemyStuff : MonoBehaviour
 
     private void MoveTowardsPlayer()
     {
-        Vector2 direction = (target.position - transform.position).normalized;
-        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        float distanceX = target.position.x - rb.position.x;
+
+        if (Mathf.Abs(distanceX) > attackRange)
+        {
+            float moveX = Mathf.Sign(distanceX) * speed * Time.deltaTime;
+
+            // Check if moving would collide with the player
+            RaycastHit2D hit = Physics2D.BoxCast(rb.position, GetComponent<Collider2D>().bounds.size,
+                                                0f, new Vector2(moveX, 0), Mathf.Abs(moveX),
+                                                LayerMask.GetMask("Player"));
+
+            if (hit.collider == null)
+            {
+                rb.MovePosition(rb.position + new Vector2(moveX, 0f));
+            }
+            else
+            {
+                // Stop movement when colliding with player
+            }
+        }
     }
+
 
 
     private void AttackPlayer()

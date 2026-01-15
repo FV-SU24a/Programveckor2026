@@ -525,6 +525,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1990108601218520256, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779189238159545123, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4660946247057690223, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_GravityScale
       value: 1
@@ -532,6 +540,10 @@ PrefabInstance:
     - target: {fileID: 5765361240872218182, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849799773229365017, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6451653104353418741, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_SortingLayer
@@ -556,6 +568,10 @@ PrefabInstance:
     - target: {fileID: 7721830687643707621, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245499221430621041, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
