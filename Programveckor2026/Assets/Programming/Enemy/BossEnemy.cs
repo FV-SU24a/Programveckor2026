@@ -1,199 +1,195 @@
 using System.Collections;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class BossEnemy : MonoBehaviour
 {
-    public float moveSpeed = 3f;
+    [Header("Movement")]
+    public float moveSpeed = 6f;
     public float patrolLeftX;
     public float patrolRightX;
-
-    public int slashDamage = 40;
-
-    private Playerhealth1 playerHealth;
-
-    public Animator animator;
-
-    //forgot to actually make the erratic movement random...so here is the stuff for that
-    public float directionChangeInteralMin = 1f;
-    public float directionChangeIntervalMax = 2f;
+    private bool movingRight = true;
     private float directionChangeTimer = 0f;
-    private bool movingRight = true; //direction for its "patrol"
+    public float directionChangeIntervalMin = 1f;
+    public float directionChangeIntervalMax = 2f;
 
-    private bool isRetreating = false;
+    [Header("Retreat")]
     public float retreatDistance = 1f;
-    public float retreatSpeed = 6f;
-    private Vector3 retreatTarget; //the x position it retreats to
+    public float retreatSpeed = 10f;
+    private Vector2 retreatTarget;
+    private bool isRetreating = false;
 
-    public float attackRange = 2f;
-    public float chargeSpeed = 8f;
+    [Header("Attack")]
+    public int slashDamage = 40;
+    public float attackRange = 1.5f;        // radius for hit detection
+    public Vector2 attackOffset = new Vector2(1.5f, 0f); // where the arm hits relative to pivot
+    public float chargeSpeed = 12f;
     public float attackCooldown = 5f;
-    private bool isAttacking = false;
-
-
-    public Transform player;
-
     private float meleeCooldownTimer = 0f;
     private float chargeCooldownTimer = 0f;
+    private bool isAttacking = false;
     private bool isCharging = false;
-    private Vector3 targetPosition; //for the charge attack
 
-    private void Start()
+    [Header("References")]
+    public Transform player;
+    private Playerhealth1 playerHealth;
+    private Rigidbody2D rb;
+    public Animator animator;
+
+    void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        if (player == null)
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
         {
-            GameObject playerObj = GameObject.FindWithTag("Player");
-            if (playerObj != null)
+            player = playerObj.transform;
+            playerHealth = playerObj.GetComponent<Playerhealth1>();
+
+            // Ignore collisions with player
+            Collider2D playerCollider = playerObj.GetComponent<Collider2D>();
+            Collider2D myCollider = GetComponent<Collider2D>();
+            if (playerCollider != null && myCollider != null)
             {
-                player = playerObj.transform;
-                playerHealth = playerObj.GetComponent<Playerhealth1>();
-            }
-            else
-            {
-                Debug.LogWarning("Player not found! Make sure it has the 'Player' tag.");
-                enabled = false; // stop this script safely
-                return;
+                Physics2D.IgnoreCollision(myCollider, playerCollider, true);
             }
         }
         else
         {
-            // only get Playerhealth if player was already assigned in inspector
-            playerHealth = player.GetComponent<Playerhealth1>();
+            Debug.LogWarning("Player not found!");
+            enabled = false;
         }
 
-        directionChangeTimer = Random.Range(directionChangeInteralMin, directionChangeIntervalMax);
+        directionChangeTimer = Random.Range(directionChangeIntervalMin, directionChangeIntervalMax);
     }
 
-
-
-    private void Update()
+    void Update()
     {
+        if (player == null) return;
+
+        // Cooldowns
         meleeCooldownTimer -= Time.deltaTime;
         chargeCooldownTimer -= Time.deltaTime;
 
-        float distanceToPlayer = Mathf.Abs(transform.position.x - player.position.x);
+        float distanceToPlayer = Mathf.Abs(rb.position.x - player.position.x);
 
-        if (!isCharging && !isAttacking && meleeCooldownTimer <= 0f && distanceToPlayer <= attackRange)
+        // --- ATTACK ---
+        if (!isAttacking && distanceToPlayer <= attackRange && meleeCooldownTimer <= 0f)
         {
-            TriggerMeleeAttack();
+            StartCoroutine(PerformMeleeAttack());
+            return; // skip movement this frame
         }
 
-        if (isRetreating)
+        // --- CHARGE ---
+        if (!isAttacking && !isRetreating && isCharging)
+        {
+            ChargeMovement();
+            return;
+        }
+
+        // --- RETREAT ---
+        if (!isAttacking && isRetreating)
         {
             RetreatMovement();
-            return; // skip patrols while retreating
+            return;
         }
 
-        if (!isCharging && chargeCooldownTimer <= 0f)
+        // --- PATROL ---
+        if (!isAttacking && !isCharging && !isRetreating)
         {
-            StartChargeAttack();
-            chargeCooldownTimer = attackCooldown; // reset charge cooldown
+            if (chargeCooldownTimer <= 0f)
+            {
+                StartChargeAttack();
+                chargeCooldownTimer = attackCooldown;
+            }
+            else
+            {
+                PatrolMovement();
+            }
         }
-
-        if (isCharging)
-            ChargeMovement();
-        else
-            PatrolMovement();
     }
-
 
     void PatrolMovement()
     {
         directionChangeTimer -= Time.deltaTime;
-
-        if(directionChangeTimer <= 0f)
+        if (directionChangeTimer <= 0f)
         {
-            movingRight = !movingRight; //flips the direction its "patrolling" in
-            directionChangeTimer = Random.Range(directionChangeInteralMin, directionChangeIntervalMax);
+            movingRight = !movingRight;
+            directionChangeTimer = Random.Range(directionChangeIntervalMin, directionChangeIntervalMax);
         }
 
-        float step = moveSpeed * Time.deltaTime;
-        transform.position += (movingRight ? Vector3.right : Vector3.left) * step;
+        Vector2 moveDir = movingRight ? Vector2.right : Vector2.left;
+        rb.position += moveDir * moveSpeed * Time.deltaTime;
 
-        //stay inside its little bubble..or yknow doesnt move past specific points so it doesnt run away
-        if (transform.position.x >= patrolRightX) movingRight = false;
-        if (transform.position.x <= patrolLeftX) movingRight = true;
-
+        if (rb.position.x >= patrolRightX) movingRight = false;
+        if (rb.position.x <= patrolLeftX) movingRight = true;
     }
 
     void StartChargeAttack()
     {
         isCharging = true;
-        targetPosition = player.position; //for the charge attack
     }
 
     void ChargeMovement()
     {
-        float step = chargeSpeed * Time.deltaTime;
+        if (isAttacking) return;
 
-        //this will track the players position
-        Vector3 currentTarget = new Vector3(player.position.x, transform.position.y, transform.position.z);
+        Vector2 target = new Vector2(player.position.x, rb.position.y);
+        rb.position = Vector2.MoveTowards(rb.position, target, chargeSpeed * Time.deltaTime);
 
-        transform.position = Vector3.MoveTowards(transform.position, currentTarget, step);
-
-        //stop when close enough to the player to attack
-        if (Mathf.Abs(transform.position.x - player.position.x) <= attackRange)
+        if (Mathf.Abs(rb.position.x - player.position.x) <= attackRange)
         {
             isCharging = false;
-            StartCoroutine(PerformSlashAttack());
-            StartRetreat();
+            StartCoroutine(PerformMeleeAttack());
         }
     }
 
-
-
-    private IEnumerator PerformSlashAttack()
+    private IEnumerator PerformMeleeAttack()
     {
+        isAttacking = true;
+
         animator.SetTrigger("Attack");
 
-        // wait until the slash hits
-        yield return new WaitForSeconds(0.5f);
-        playerHealth?.TakeDamage(slashDamage);
+        yield return new WaitForSeconds(0.5f); // hit frame
 
-        // wait until animation ends
-        yield return new WaitForSeconds(0.3f);
+        // Use attack offset to match arm reach
+        Vector2 attackPos = (Vector2)rb.position + attackOffset;
+        if (Vector2.Distance(attackPos, player.position) <= attackRange)
+        {
+            playerHealth?.TakeDamage(slashDamage);
+        }
 
-        // allow boss to attack again after cooldown is fully respected
+        yield return new WaitForSeconds(0.3f); // finish animation
+
         isAttacking = false;
-    }
-
-    private void TriggerMeleeAttack()
-    {
-        //block further attacks immediately
-        isAttacking = true;
         meleeCooldownTimer = attackCooldown;
 
-        //start the attack coroutine
-        StartCoroutine(PerformSlashAttack());
+        StartRetreat();
     }
-
 
     void StartRetreat()
     {
         isRetreating = true;
-
-        //move opposite the player
-        float direction = transform.position.x < player.position.x ? -1f : 1f;
-
-        retreatTarget = new Vector3(transform.position.x + direction * retreatDistance, transform.position.y, transform.position.z);
+        float direction = rb.position.x < player.position.x ? -1f : 1f;
+        retreatTarget = new Vector2(rb.position.x + direction * retreatDistance, rb.position.y);
     }
-
 
     void RetreatMovement()
     {
-        float step = retreatSpeed * Time.deltaTime;
+        rb.position = Vector2.MoveTowards(rb.position, retreatTarget, retreatSpeed * Time.deltaTime);
 
-        transform.position = Vector3.MoveTowards(transform.position, retreatTarget, step);
-
-        //stops retreating once reaching the target
-        if(Mathf.Abs(transform.position.x - retreatTarget.x) <= 0.1f)
+        if (Mathf.Abs(rb.position.x - retreatTarget.x) <= 0.1f)
         {
             isRetreating = false;
-
-            //goes back to patrolling
-            directionChangeTimer = Random.Range(directionChangeInteralMin, directionChangeIntervalMax);
+            directionChangeTimer = Random.Range(directionChangeIntervalMin, directionChangeIntervalMax);
         }
+    }
+
+    // Optional: visualize attack range in editor
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Vector2 attackPos = (Vector2)transform.position + attackOffset;
+        Gizmos.DrawWireSphere(attackPos, attackRange);
     }
 }

@@ -33,21 +33,27 @@ public class EnemyStuff : MonoBehaviour
     {
         if (!isAlive || target == null || CompareTag("Boss")) return;
 
-        float distance = Vector2.Distance(transform.position, target.position);
+        float distance = Vector2.Distance(rb.position, target.position);
 
         if (distance > attackRange)
+        {
             MoveTowardsPlayer();
-        else if (attackCooldown <= 0)
+        }
+        else if (attackCooldown <= 0f)
+        {
             AttackPlayer();
+        }
 
-        if (attackCooldown > 0) attackCooldown -= Time.deltaTime;
+        if (attackCooldown > 0f)
+            attackCooldown -= Time.deltaTime;
     }
 
     private void MoveTowardsPlayer()
     {
         Vector2 direction = (target.position - transform.position).normalized;
-        transform.position += (Vector3)(direction * speed * Time.deltaTime);
+        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
+
 
     private void AttackPlayer()
     {
