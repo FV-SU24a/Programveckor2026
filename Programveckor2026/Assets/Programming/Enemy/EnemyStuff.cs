@@ -14,6 +14,10 @@ public class EnemyStuff : MonoBehaviour
     private bool isAlive = true;
     private bool isAttacking = false;
 
+    private Vector2 knockbackVelocity = Vector2.zero; // only horizontal
+    private float knockbackTimer = 0f;
+
+
     private Transform target;
     private Playerhealth1 playerHealth;
     private float attackCooldown;
@@ -35,6 +39,18 @@ public class EnemyStuff : MonoBehaviour
     private void Update()
     {
         if (!isAlive || target == null || CompareTag("Boss")) return;
+
+        if (knockbackTimer > 0f)
+        {
+            // Move horizontally only
+            rb.MovePosition(rb.position + knockbackVelocity * Time.deltaTime);
+
+            // Reduce knockback timer
+            knockbackTimer -= Time.deltaTime;
+
+            return; // skip AI while in knockback
+        }
+
 
         float distanceX = Mathf.Abs(target.position.x - rb.position.x);
 
@@ -110,4 +126,12 @@ public class EnemyStuff : MonoBehaviour
     }
 
     public bool IsAttacking() => isAttacking;
+
+    public void ApplyKnockBack(float horizontalForce, float duration = 0.2f)
+    {
+        knockbackVelocity = new Vector2(horizontalForce, 0f); // only push left/right
+        knockbackTimer = duration;
+    }
+
+
 }

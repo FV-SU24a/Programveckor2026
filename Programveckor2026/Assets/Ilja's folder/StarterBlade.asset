@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarterBlade
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: WoodBlade
-  damage: 4
+  damage: 10
   range: 3
   weaponPrefab: {fileID: 8534306393466169069, guid: baec965682fa06648b9ee2bf73625636, type: 3}
   unlockWave: 0

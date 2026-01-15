@@ -553,6 +553,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 894100124682015119, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: knockbackForce
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 1920312856152348975, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -566,8 +570,20 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4396191524764260192, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4396191524764260192, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4396191524764260192, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4396191524764260192, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.78
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: 4660946247057690223, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_GravityScale
@@ -634,8 +650,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 849983455}
     - target: {fileID: 7106241429225536389, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106241429225536389, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.59
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 7721830687643707621, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_LocalScale.x
