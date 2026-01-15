@@ -22,6 +22,9 @@ public class EnemyStuff : MonoBehaviour
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Kinematic;
+
         currentHealth = maxHealth;
         target = GameObject.FindGameObjectWithTag("Player")?.transform;
         playerHealth = target?.GetComponent<Playerhealth1>();
@@ -33,9 +36,9 @@ public class EnemyStuff : MonoBehaviour
     {
         if (!isAlive || target == null || CompareTag("Boss")) return;
 
-        float distance = Vector2.Distance(rb.position, target.position);
+        float distanceX = Mathf.Abs(target.position.x - rb.position.x);
 
-        if (distance > attackRange)
+        if (distanceX > attackRange)
         {
             MoveTowardsPlayer();
         }
@@ -50,9 +53,26 @@ public class EnemyStuff : MonoBehaviour
 
     private void MoveTowardsPlayer()
     {
-        Vector2 direction = (target.position - transform.position).normalized;
-        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        if (target == null) return;
+
+        // Calculate horizontal distance only
+        float distanceX = target.position.x - transform.position.x;
+
+        // Only move if outside attack range
+        if (Mathf.Abs(distanceX) > attackRange)
+        {
+            float moveStep = Mathf.Sign(distanceX) * speed * Time.fixedDeltaTime;
+
+            // Clamp movement so enemy stops at attackRange
+            if (Mathf.Abs(moveStep) > Mathf.Abs(distanceX) - attackRange)
+                moveStep = distanceX - Mathf.Sign(distanceX) * attackRange;
+
+            Vector2 newPos = new Vector2(rb.position.x + moveStep, rb.position.y);
+            rb.MovePosition(newPos);
+        }
     }
+
+
 
 
     private void AttackPlayer()
