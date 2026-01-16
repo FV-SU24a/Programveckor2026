@@ -15,6 +15,7 @@ public class EnemyStuff : MonoBehaviour
 
     private bool isAlive = true;
     private bool isAttacking = false;
+    [SerializeField] private Transform attackPoint; // assign in inspector
 
     private Vector2 knockbackVelocity = Vector2.zero; // only horizontal
     private float knockbackTimer = 0f;
@@ -45,30 +46,36 @@ public class EnemyStuff : MonoBehaviour
 
         if (knockbackTimer > 0f)
         {
-            // Move horizontally only
             rb.MovePosition(rb.position + knockbackVelocity * Time.deltaTime);
-
-            // Reduce knockback timer
             knockbackTimer -= Time.deltaTime;
-
-            return; // skip AI while in knockback
+            return;
         }
 
+        // Check attack range first
+        Vector2 origin = attackPoint != null ? attackPoint.position : rb.position;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, attackRange, LayerMask.GetMask("Player"));
 
-        float distanceX = Mathf.Abs(target.position.x - rb.position.x);
-
-        if (distanceX > attackRange)
+        if (hits.Length > 0)
         {
+            // Stop moving if in range
+            isAttacking = true;
+
+            if (attackCooldown <= 0f)
+            {
+                AttackPlayer();
+            }
+        }
+        else
+        {
+            // Only move if player not in attack range
+            isAttacking = false;
             MoveTowardsPlayer();
-        }
-        else if (attackCooldown <= 0f)
-        {
-            AttackPlayer();
         }
 
         if (attackCooldown > 0f)
             attackCooldown -= Time.deltaTime;
     }
+
 
     private void MoveTowardsPlayer()
     {
@@ -140,6 +147,16 @@ public class EnemyStuff : MonoBehaviour
     {
         knockbackVelocity = new Vector2(horizontalForce, 0f); // only push left/right
         knockbackTimer = duration;
+    }
+
+
+    private void OnDrawGizmosSelected()
+    {
+        if (!Application.isPlaying) return;
+        if (attackPoint == null) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
 

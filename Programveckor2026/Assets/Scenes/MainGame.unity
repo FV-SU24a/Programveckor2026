@@ -1437,6 +1437,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &700182581 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6595178126298814268, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+  m_PrefabInstance: {fileID: 748355000}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700182571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b8ee5f4c584e04f96ee4323c080038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Playerhealth1
 --- !u!1001 &748355000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2858,7 +2869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63cc0c579f7846d4e969485f975d785b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::heartdestroyer
-  player: {fileID: 0}
+  player: {fileID: 700182581}
   lifeImages:
   - {fileID: 1757175347}
   - {fileID: 1954820087}
