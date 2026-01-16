@@ -104,9 +104,6 @@ public class EnemyStuff : MonoBehaviour
         }
     }
 
-
-
-
     private void AttackPlayer()
     {
         if (playerHealth == null) return;
