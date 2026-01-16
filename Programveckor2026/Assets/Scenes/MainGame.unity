@@ -1601,6 +1601,14 @@ PrefabInstance:
       value: -619328261
       objectReference: {fileID: 0}
     - target: {fileID: 6595178126298814268, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: health
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595178126298814268, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: maxHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595178126298814268, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: healthText
       value: 
       objectReference: {fileID: 849983455}
@@ -2880,7 +2888,7 @@ MonoBehaviour:
   - {fileID: 191655427}
   - {fileID: 1101202387}
   - {fileID: 1505272719}
-  lifeChunk: 30
+  lifeChunk: 40
 --- !u!4 &1391910404
 Transform:
   m_ObjectHideFlags: 0
