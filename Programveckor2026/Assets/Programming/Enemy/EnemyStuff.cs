@@ -112,7 +112,11 @@ public class EnemyStuff : MonoBehaviour
         if (playerHealth == null) return;
 
         isAttacking = true;
+
+        SoundManager.Instance?.PlayEnemyAttack();
+
         playerHealth.TakeDamage(damage);
+
         Debug.Log($"{name} attacks the player for {damage} damage");
         attackCooldown = attackRate;
 

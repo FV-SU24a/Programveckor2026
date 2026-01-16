@@ -2,15 +2,25 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static SoundManager Instance;
+
+    [Header("Enemy Sounds")]
+    public AudioClip enemyHitSound;
+
+    private AudioSource audioSource;
+
+    void Awake()
     {
-        
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayEnemyAttack()
     {
-        
+        audioSource.PlayOneShot(enemyHitSound);
     }
 }
