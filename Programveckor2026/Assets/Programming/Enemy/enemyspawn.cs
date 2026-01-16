@@ -7,7 +7,8 @@ public class enemyspawn : MonoBehaviour
     public Transform player;
     public float spawnRate = 1f;
     public float spawnOffset = 1f; // distance outside left camera edge
-    public float spawnY = 0;
+    public float spawnYOffset = 0f; // NEW: vertical offset
+
 
     public void SpawnWave(int waveNumber, WaveEnemy waveEnemy)
     {
@@ -27,6 +28,7 @@ public class enemyspawn : MonoBehaviour
 
             float cameraLeftEdge = Camera.main.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect;
             float spawnX = cameraLeftEdge - spawnOffset - 3f; // spawn safely off-screen so player doesn tsee
+            float spawnY = player.position.y + spawnYOffset;
             Vector3 spawnPos = new Vector3(spawnX, spawnY, 0f);
 
             Instantiate(waveEnemy.enemyPrefab, spawnPos, Quaternion.identity);
