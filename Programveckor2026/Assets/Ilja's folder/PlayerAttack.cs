@@ -31,12 +31,18 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && !isAttacking && Time.time >= nextAttackTime)
         {
-            anim.SetTrigger("Attack");
-            isAttacking = true;
-            nextAttackTime = Time.time + attackCooldown;
+            StartAttack();
         }
     }
 
+
+    void StartAttack()
+    {
+        isAttacking = true;
+        nextAttackTime = Time.time + attackCooldown;
+
+        anim.SetBool("IsAttacking", true); // Use bool instead of trigger
+    }
     public void Attack()
     {
         Debug.Log("ATTACK EVENT WORKING");
@@ -91,6 +97,7 @@ public class PlayerAttack : MonoBehaviour
     public void AttackFinished()
     {
         isAttacking = false;
+        anim.SetBool("IsAttacking", false);
     }
 
 
