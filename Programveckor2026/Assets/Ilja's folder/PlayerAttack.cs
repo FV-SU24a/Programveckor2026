@@ -29,10 +29,11 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && Time.time >= nextAttackTime)
+        if (Input.GetKeyDown(KeyCode.E) && !isAttacking && Time.time >= nextAttackTime)
         {
             anim.SetTrigger("Attack");
             isAttacking = true;
+            nextAttackTime = Time.time + attackCooldown;
         }
     }
 
