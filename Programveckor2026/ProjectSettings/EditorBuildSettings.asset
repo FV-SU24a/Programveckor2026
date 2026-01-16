@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOver.unity
     guid: 71029f0374a50b742ac11fcc62fab31b
   - enabled: 1
+    path: Assets/Scenes/MainGame.unity
+    guid: 429a79c214a2f7543b98c7126d86a1fd
+  - enabled: 1
     path: Assets/Scenes/CutScene.unity
     guid: 1be141fb479de9541aa78369d23367da
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Felicia scene.unity
     guid: 206ac0a2fe199a343b92949bf2c15518
   m_configObjects:
