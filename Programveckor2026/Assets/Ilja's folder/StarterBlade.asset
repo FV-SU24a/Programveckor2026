@@ -15,5 +15,5 @@ MonoBehaviour:
   weaponName: WoodBlade
   damage: 10
   range: 4
-  weaponPrefab: {fileID: 8534306393466169069, guid: baec965682fa06648b9ee2bf73625636, type: 3}
+  weaponPrefab: {fileID: 4379042247176242258, guid: dc0561435508bee4d819229951883083, type: 3}
   unlockWave: 0

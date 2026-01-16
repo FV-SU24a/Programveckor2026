@@ -1620,6 +1620,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.24
       objectReference: {fileID: 0}
+    - target: {fileID: 7646876778891945276, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: fc603722eb049ef4499ae5a3112282fd, type: 2}
     - target: {fileID: 7721830687643707621, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.1
