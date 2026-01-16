@@ -1462,7 +1462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 316818801126558553, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.7
       objectReference: {fileID: 0}
     - target: {fileID: 316818801126558553, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1511,6 +1511,10 @@ PrefabInstance:
     - target: {fileID: 1990108601218520256, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277933469074010018, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      propertyPath: jumpForce
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3277933469074010018, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       propertyPath: moveSpeed
