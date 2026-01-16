@@ -11,6 +11,8 @@ public class PlayerAttack : MonoBehaviour
     public int baseDamage = 1; // Default damage, can be overridden by weapon
     public LayerMask enemyLayers;
     public float attackCooldown = 0.4f;
+    private bool isAttacking = false;
+
 
     private float nextAttackTime = 0f;
     private SpriteRenderer sr;
@@ -30,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && Time.time >= nextAttackTime)
         {
             anim.SetTrigger("Attack");
-            nextAttackTime = Time.time + attackCooldown;
+            isAttacking = true;
         }
     }
 
@@ -82,5 +84,13 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos, attackRange);
     }
+
+
+    //for the animator event
+    public void AttackFinished()
+    {
+        isAttacking = false;
+    }
+
 
 }
