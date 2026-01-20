@@ -27,11 +27,28 @@ public class enemyspawn : MonoBehaviour
                 yield break;
 
             float cameraLeftEdge = Camera.main.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect;
-            float spawnX = cameraLeftEdge - spawnOffset - 3f; // spawn safely off-screen so player doesn tsee
+            float cameraRightEdge = Camera.main.transform.position.x + Camera.main.orthographicSize * Camera.main.aspect;
+
+            // Randomly pick left (-1) or right (1)
+            int side = Random.value < 0.5f ? -1 : 1;
+
+            float spawnX;
+            if (side == -1)
+            {
+                // Spawn off-screen left
+                spawnX = cameraLeftEdge - spawnOffset - 3f;
+            }
+            else
+            {
+                // Spawn off-screen right
+                spawnX = cameraRightEdge + spawnOffset + 3f;
+            }
+
             float spawnY = player.position.y + spawnYOffset;
             Vector3 spawnPos = new Vector3(spawnX, spawnY, 0f);
 
             Instantiate(waveEnemy.enemyPrefab, spawnPos, Quaternion.identity);
+
             yield return new WaitForSeconds(spawnRate);
         }
     }

@@ -610,7 +610,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 959491518168199772, guid: 08cf1a4a21a414b4a949b72b42172499, type: 3}
   player: {fileID: 700182572}
   spawnRate: 1
-  spawnOffset: 1
+  spawnOffset: 3
   spawnYOffset: 0
 --- !u!4 &201490025
 Transform:
