@@ -1448,6 +1448,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b8ee5f4c584e04f96ee4323c080038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Playerhealth1
+--- !u!114 &700182582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700182571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823df38699c233145889e63732ab21c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSwitch
+  anim: {fileID: 700182580}
 --- !u!1001 &748355000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1651,6 +1664,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1990108601218520256, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 700182580}
+    - targetCorrespondingSourceObject: {fileID: 1990108601218520256, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 700182582}
   m_SourcePrefab: {fileID: 100100000, guid: 1952f2e3855479742a1ed3825cceb02d, type: 3}
 --- !u!1 &827876716
 GameObject:
