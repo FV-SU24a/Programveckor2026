@@ -108,18 +108,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b543913393345ec4fa12e38046a82b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossEnemy
-  moveSpeed: 3
+  moveSpeed: 4
   patrolLeftX: -36.4
   patrolRightX: -1.021488
   directionChangeIntervalMin: 2
   directionChangeIntervalMax: 3
   retreatDistance: 4
   retreatSpeed: 8
-  slashDamage: 40
-  attackRange: 3
+  slashDamage: 50
+  attackRange: 4
   attackOffset: {x: 1, y: 2}
-  chargeSpeed: 8
-  attackCooldown: 3
+  chargeSpeed: 9
+  attackCooldown: 2
   player: {fileID: 0}
   animator: {fileID: 0}
 --- !u!95 &6393597450840297810
