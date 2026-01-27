@@ -38,4 +38,12 @@ public class Playerhealth1 : MonoBehaviour
         }
     }
 
+    public void Heal(int amount)
+    {
+        health += amount;
+        health = Mathf.Clamp(health, 0, maxHealth);
+        UpdateHealthUI();
+    }
+
+
 }

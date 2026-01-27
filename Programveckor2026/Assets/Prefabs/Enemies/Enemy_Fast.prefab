@@ -140,6 +140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStuff
   maxHealth: 15
+  healPrefab: {fileID: 1283162656521249361, guid: ac52d3227d3cbaa458e53065ae284a9d, type: 3}
+  healingDropChance: 0.5
   speed: 4
   damage: 5
   attackRange: 2

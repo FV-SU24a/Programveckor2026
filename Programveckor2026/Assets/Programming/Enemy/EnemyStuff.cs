@@ -8,6 +8,11 @@ public class EnemyStuff : MonoBehaviour
 
     [SerializeField] private int maxHealth = 100;
     private int currentHealth;
+
+    public GameObject healPrefab;
+
+    public float healingDropChance = 0.5f;
+
     [SerializeField] private float speed = 3f;
     [SerializeField] private int damage = 10;
     [SerializeField] private float attackRange = 2f;
@@ -139,6 +144,12 @@ public class EnemyStuff : MonoBehaviour
     {
         isAlive = false;
         Debug.Log($"{name} died!");
+
+        if (healPrefab != null && Random.value <= healingDropChance)
+        {
+            Instantiate(healPrefab, transform.position, Quaternion.identity);
+        }
+
         Destroy(gameObject);
     }
 
