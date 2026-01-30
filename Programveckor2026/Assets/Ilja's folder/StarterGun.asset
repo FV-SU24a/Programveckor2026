@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9433eb098663e424e9db3b32ad17e6fc, type: 3}
-  m_Name: BoneSword
+  m_Name: StarterGun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponSprite: {fileID: -1409740040624010413, guid: b546f0a35b9a6604d9f1f470c59d7c74, type: 3}
-  weaponName: Rare Sword
-  damage: 15
-  range: 6
-  weaponPrefab: {fileID: 8726609631869207161, guid: 295e3bc9be72d0c47b2c8ed2936d1a03, type: 3}
-  unlockWave: 3
+  weaponSprite: {fileID: 1694238985705947709, guid: 6a29a5f50492fed4f8105418ba132273, type: 3}
+  weaponName: StarterGun
+  damage: 10
+  range: 4
+  weaponPrefab: {fileID: 4379042247176242258, guid: dc0561435508bee4d819229951883083, type: 3}
+  unlockWave: 0

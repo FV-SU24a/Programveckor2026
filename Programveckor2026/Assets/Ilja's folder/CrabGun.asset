@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9433eb098663e424e9db3b32ad17e6fc, type: 3}
-  m_Name: StarterBlade
+  m_Name: CrabGun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponSprite: {fileID: 1694238985705947709, guid: 6a29a5f50492fed4f8105418ba132273, type: 3}
-  weaponName: StarterBlade
-  damage: 10
-  range: 4
-  weaponPrefab: {fileID: 4379042247176242258, guid: dc0561435508bee4d819229951883083, type: 3}
-  unlockWave: 0
+  weaponSprite: {fileID: 0}
+  weaponName: CrabGun
+  damage: 25
+  range: 2.5
+  weaponPrefab: {fileID: 5829677810778504462, guid: 784e7d3f8147d79429d9b5a63e5f373d, type: 3}
+  unlockWave: 1
