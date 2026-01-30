@@ -15,6 +15,6 @@ MonoBehaviour:
   weaponSprite: {fileID: 3822005751787774092, guid: 86f44185554cfdf4daf85353d2aede64, type: 3}
   weaponName: CrabGun
   damage: 25
-  range: 2.5
+  range: 4
   weaponPrefab: {fileID: 1823963791946261265, guid: e961e388a541e8c4695aa12137f7dc86, type: 3}
   unlockWave: 8
