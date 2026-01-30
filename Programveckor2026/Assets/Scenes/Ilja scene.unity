@@ -899,7 +899,7 @@ MonoBehaviour:
   player: {fileID: 1791983456}
   spawnRate: 1
   spawnOffset: 1
-  spawnY: -3.911181
+  spawnYOffset: 0
 --- !u!4 &854102393
 Transform:
   m_ObjectHideFlags: 0
