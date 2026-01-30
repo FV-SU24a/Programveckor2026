@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9433eb098663e424e9db3b32ad17e6fc, type: 3}
   m_Name: BoneSword
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponSprite: {fileID: -1409740040624010413, guid: b546f0a35b9a6604d9f1f470c59d7c74, type: 3}
   weaponName: Rare Sword
   damage: 15
   range: 6
