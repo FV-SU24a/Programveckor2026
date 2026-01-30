@@ -2835,7 +2835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
   waveEnemies:
   - enemyPrefab: {fileID: 959491518168199772, guid: 08cf1a4a21a414b4a949b72b42172499, type: 3}
-    startWave: 10
+    startWave: 0
     baseCount: 2
     perWaveIncrease: 2
   - enemyPrefab: {fileID: 6979144756740068588, guid: 636b3a91d30d72746bd898d676e44977, type: 3}
@@ -2847,7 +2847,7 @@ MonoBehaviour:
     baseCount: 2
     perWaveIncrease: 2
   - enemyPrefab: {fileID: 1173877133439795922, guid: f97b9ceb0c2a5f9498f8b301e2fdd82b, type: 3}
-    startWave: 0
+    startWave: 15
     baseCount: 1
     perWaveIncrease: 0
   timerText: {fileID: 1504450868}
