@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9433eb098663e424e9db3b32ad17e6fc, type: 3}
-  m_Name: CrabGun
+  m_Name: SquidGun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponSprite: {fileID: 0}
-  weaponName: CrabGun
-  damage: 25
-  range: 2.5
-  weaponPrefab: {fileID: 1823963791946261265, guid: e961e388a541e8c4695aa12137f7dc86, type: 3}
-  unlockWave: 8
+  weaponName: SquidGun
+  damage: 20
+  range: 6
+  weaponPrefab: {fileID: 3630740461532033818, guid: ebea1da37a18eef42aafd4f43d24bedc, type: 3}
+  unlockWave: 13
