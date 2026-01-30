@@ -115,7 +115,7 @@ MonoBehaviour:
   directionChangeIntervalMax: 3
   retreatDistance: 4
   retreatSpeed: 8
-  slashDamage: 50
+  slashDamage: 40
   attackRange: 4
   attackOffset: {x: 1, y: 2}
   chargeSpeed: 9
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a18f77fd2c1ba4390b15aca5617536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStuff
-  maxHealth: 125
+  maxHealth: 100
   healPrefab: {fileID: 1283162656521249361, guid: ac52d3227d3cbaa458e53065ae284a9d, type: 3}
   healingDropChance: 0.5
   speed: 3
