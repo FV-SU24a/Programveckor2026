@@ -17,4 +17,4 @@ MonoBehaviour:
   damage: 15
   range: 6
   weaponPrefab: {fileID: 8726609631869207161, guid: 295e3bc9be72d0c47b2c8ed2936d1a03, type: 3}
-  unlockWave: 1
+  unlockWave: 3
