@@ -55,6 +55,13 @@ public class WeaponPickup : MonoBehaviour
                   " | Damage: " + weapon.damage +
                   " | Range: " + weapon.range);
 
+        WeaponVisual weaponVisual = playerAttack.GetComponentInChildren<WeaponVisual>();
+
+        if (weaponVisual != null)
+        {
+            weaponVisual.SetWeaponSprite(weapon.weaponSprite);
+        }
+
         Destroy(gameObject);
     }
 }
