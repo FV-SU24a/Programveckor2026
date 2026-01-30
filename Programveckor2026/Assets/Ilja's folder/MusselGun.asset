@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9433eb098663e424e9db3b32ad17e6fc, type: 3}
   m_Name: MusselGun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: -797340027660738003, guid: da69fe91b20b385488dd6c8818ac2332, type: 3}
   weaponName: Weapon
   damage: 13
   range: 8

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9433eb098663e424e9db3b32ad17e6fc, type: 3}
   m_Name: CrabGun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: 3822005751787774092, guid: 86f44185554cfdf4daf85353d2aede64, type: 3}
   weaponName: CrabGun
   damage: 25
   range: 2.5

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9433eb098663e424e9db3b32ad17e6fc, type: 3}
   m_Name: SquidGun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: -8290659769197886580, guid: 94706479f42131649938448516f83a31, type: 3}
   weaponName: SquidGun
   damage: 20
   range: 6
