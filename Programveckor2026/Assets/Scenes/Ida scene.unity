@@ -586,6 +586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::camfollow
   FollowSpeed: 3
   yOffset: 1
+  xOffset: 0
   target: {fileID: 402758168}
 --- !u!1 &512660034
 GameObject:
