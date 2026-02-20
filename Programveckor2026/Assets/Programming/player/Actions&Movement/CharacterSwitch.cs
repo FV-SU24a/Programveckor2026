@@ -1,7 +1,5 @@
-using JetBrains.Annotations;
-using System.Runtime.CompilerServices;
-using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine;
 
 public class CharacterSwitch : MonoBehaviour
 {
@@ -12,15 +10,13 @@ public class CharacterSwitch : MonoBehaviour
     {
         isForm2 = !isForm2;
 
+        // Tell the Animator which root to switch to
         anim.SetBool("isForm2", isForm2);
 
+        // Trigger the switch
         anim.SetTrigger("Switched");
 
-        anim.Rebind();
-        anim.Update(0f);
-
     }
-
 
     private void Update()
     {
@@ -29,10 +25,4 @@ public class CharacterSwitch : MonoBehaviour
             SwitchCharacters();
         }
     }
-
-
 }
-
-
-
-
